@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import { Form, Input, Button, Descriptions, Image } from 'antd';
 import Axios from 'axios';
 import { capitalize } from '../common/capitalize';
@@ -86,21 +86,29 @@ const Search = () => {
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>
-              <Form layout="vertical" onFinish={searchPokemonFormOnFinish}>
-              <Form.Item>
-                <Input
-                  type="number"
-                  min={1}
-                  max={151}
-                  value={state.text}
-                  onChange={pokemonNameOnChange}
-                  required
-                />
-              </Form.Item>
-              <Button type="primary" htmlType="submit">
-                Search
-              </Button>
-            </Form>
+                <Form
+                  layout="vertical"
+                  onFinish={searchPokemonFormOnFinish}
+                  style={{
+                    marginLeft: 24,
+                    marginRight: 24,
+                    marginBottom: 24,
+                  }}
+                >
+                  <Form.Item>
+                    <Input
+                      type="number"
+                      min={1}
+                      max={151}
+                      value={state.text}
+                      onChange={pokemonNameOnChange}
+                      required
+                    />
+                  </Form.Item>
+                  <Button type="primary" htmlType="submit">
+                    Search
+                  </Button>
+                </Form>
               </MDBox>
             </Card>
           </Grid>
@@ -121,35 +129,33 @@ const Search = () => {
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>
-              <Descriptions
-              bordered
-              size="small"
-              style={{
-                marginLeft: 24,
-                marginRight: 24,
-                marginBottom: 24 
-              }}
-              column={{
-                xs: 1,
-                sm: 1,
-                md: 1,
-                lg: 1,
-              }}
-            >
-              {!state?.err && (
-                <>
-                  <Descriptions.Item label="Name">
-                    {state.pokemonName}
-                  </Descriptions.Item>
-                  <Descriptions.Item label="Image">
-                    {state.pokemonSprite?.front_default && (
-                      <Image width={200} src={state.pokemonSprite?.front_default} />
-                    )}
-                  </Descriptions.Item>
-                </>
-              )}
-              {state?.err && <Descriptions.Item>{state?.err}</Descriptions.Item>}
-            </Descriptions>
+                <Descriptions
+                  bordered
+                  size="small"
+                  style={{
+                    marginLeft: 24,
+                    marginRight: 24,
+                    marginBottom: 24,
+                  }}
+                  column={{
+                    xs: 1,
+                    sm: 1,
+                    md: 1,
+                    lg: 1,
+                  }}
+                >
+                  {!state?.err && (
+                    <>
+                      <Descriptions.Item label="Name">{state.pokemonName}</Descriptions.Item>
+                      <Descriptions.Item label="Image">
+                        {state.pokemonSprite?.front_default && (
+                          <Image width={200} src={state.pokemonSprite?.front_default} />
+                        )}
+                      </Descriptions.Item>
+                    </>
+                  )}
+                  {state?.err && <Descriptions.Item>{state?.err}</Descriptions.Item>}
+                </Descriptions>
               </MDBox>
             </Card>
           </Grid>
